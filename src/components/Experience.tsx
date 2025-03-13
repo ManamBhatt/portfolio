@@ -22,16 +22,16 @@ const experiences = [
     role: 'DevOps Engineer',
     duration: '2019 - 2021',
     responsibilities: [
-      'Migrated microservices (Spring Boot, Maven) to Azure, reducing costs by 20%, improving time-to-market by 25%, and cutting operational tasks by 40%', 
-      'Implemented CI/CD pipeline with Azure DevOps and GitLab, boosting deployment velocity by 30%', 
-      'Set up Kubernetes clusters for scalability, high availability, and secure deployments', 
-      'Developed multi-stage Dockerfiles for faster, lightweight containers, reducing deployment time and VM overhead', 
-      'Integrated SonarQube and Twistlock for code quality and early vulnerability detection', 
-      'Used Splunk for troubleshooting container crashes and Pod issues', 
-      'Leveraged Azure Key Vault for secret management, improving compliance and reducing overhead', 
-      'Managed tasks with Azure Boards, Jira, and Confluence within Scrum framework', 
-      'Resolved Git merge conflicts, ensuring code consistency', 
-      'Led Scrum meetings and communicated with stakeholders'.
+      'Migrated microservices (Spring Boot, Maven) to Azure, reducing costs by 20%, improving time-to-market by 25%, and cutting operational tasks by 40%',
+      'Implemented CI/CD pipeline with Azure DevOps and GitLab, boosting deployment velocity by 30%',
+      'Set up Kubernetes clusters for scalability, high availability, and secure deployments',
+      'Developed multi-stage Dockerfiles for faster, lightweight containers, reducing deployment time and VM overhead',
+      'Integrated SonarQube and Twistlock for code quality and early vulnerability detection',
+      'Used Splunk for troubleshooting container crashes and Pod issues',
+      'Leveraged Azure Key Vault for secret management, improving compliance and reducing overhead',
+      'Managed tasks with Azure Boards, Jira, and Confluence within Scrum framework',
+      'Resolved Git merge conflicts, ensuring code consistency',
+      'Led Scrum meetings and communicated with stakeholders'
     ]
   },
   {
@@ -39,14 +39,14 @@ const experiences = [
     role: 'Cloud Engineer',
     duration: '2017 - 2019',
     responsibilities: [
-      'Led migration of SOA applications from On-prem to Azure and AWS Cloud (Java, Python, Angular/Node, .NET)', 
-      'Implemented version control with BitBucket, boosting commits by 20% over IBM RTC', 
-      'Managed Jenkins pipelines, increasing release frequency by 40%', 
-      'Used Terraform and AWS CloudFormation for cloud infrastructure, reducing human errors and deployment time by 50%', 
-      'Utilized Ansible playbooks to automate infrastructure provisioning, reducing manual tasks by 50% and deployment time by 40%', 
-      'Configured Kubernetes manifest for auto-healing, readiness/liveness probes, and Horizontal Pod Autoscaling', 
-      'Used Jira and Confluence for collaboration and managed Change Requests with ServiceNow', 
-      'Developed POC with AWS CodeDeploy to explore new technologies for product support and development'.
+      'Led migration of SOA applications from On-prem to Azure and AWS Cloud (Java, Python, Angular/Node, .NET)',
+      'Implemented version control with BitBucket, boosting commits by 20% over IBM RTC',
+      'Managed Jenkins pipelines, increasing release frequency by 40%',
+      'Used Terraform and AWS CloudFormation for cloud infrastructure, reducing human errors and deployment time by 50%',
+      'Utilized Ansible playbooks to automate infrastructure provisioning, reducing manual tasks by 50% and deployment time by 40%',
+      'Configured Kubernetes manifest for auto-healing, readiness/liveness probes, and Horizontal Pod Autoscaling',
+      'Used Jira and Confluence for collaboration and managed Change Requests with ServiceNow',
+      'Developed POC with AWS CodeDeploy to explore new technologies for product support and development'
     ]
   }
 ];
