@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const sentences = [
   "manage code versioning and collaboration using Git.",
@@ -34,7 +34,7 @@ const sentences = [
   "manage cloud infrastructure on Amazon Web Services (AWS).",
   "provision and manage resources on Google Cloud Platform (GCP).",
   "manage and deliver projects using Agile methodologies.",
-  "implement Scrum framework for efficient project management and delivery."
+  "implement Scrum framework for efficient project management and delivery.",
 ];
 
 const TypingEffect = () => {
@@ -44,7 +44,7 @@ const TypingEffect = () => {
 
   useEffect(() => {
     let charIndex = 0;
-    const typingSpeed = 100; // Adjust typing speed
+    const typingSpeed = 80; // Slower typing speed
     const sentence = sentences[index];
 
     const typeText = () => {
@@ -55,7 +55,7 @@ const TypingEffect = () => {
       } else {
         setTimeout(() => {
           setIndex((prev) => (prev + 1) % sentences.length);
-        }, 1500); // Delay before switching sentence
+        }, 2000); // Small delay before switching sentence
       }
     };
 
@@ -64,9 +64,10 @@ const TypingEffect = () => {
   }, [index]);
 
   return (
-    <p className="text-xl md:text-2xl text-slate text-center mt-4 whitespace-nowrap overflow-hidden">
-      I can <span className="typing-text">{displayText}</span>
-    </p>
+    <div className="text-xl md:text-2xl text-slate flex items-center justify-center">
+      <span className="font-semibold">I can&nbsp;</span>
+      <span className="typing-text">{displayText}</span>
+    </div>
   );
 };
 
@@ -112,6 +113,7 @@ const Hero = () => {
         >
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
+        
         <TypingEffect />
         
         {/* View My Work Button */}
