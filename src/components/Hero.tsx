@@ -40,7 +40,7 @@ const Hero = () => {
           Hi, my name is
         </motion.p>
         <motion.h1 
-          className="text-5xl md:text-7xl font-bold mb-4 text-light-slate"
+          className="text-5xl md:text-7xl font-bold mb-4 text-light-slate typing-animation"
           variants={itemVariants}
         >
           Manam Bhatt
@@ -51,8 +51,6 @@ const Hero = () => {
         >
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
-        
-        {/* Use an anchor tag to scroll to the work section */}
         <motion.a 
           href="#work" // Add the target section's ID here
           className="btn-primary"
