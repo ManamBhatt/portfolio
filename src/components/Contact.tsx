@@ -33,25 +33,25 @@ const Contact = () => {
             </p>
             <div className="space-y-4">
               <a 
-                href="https://github.com/yourusername"
+                href="https://github.com/manambhatt"
                 className="flex items-center gap-3 text-gray-700 hover:text-gray-900"
               >
                 <Github className="w-6 h-6" />
-                github.com/yourusername
+                github.com/manambhatt
               </a>
               <a 
-                href="https://linkedin.com/in/yourusername"
+                href="https://linkedin.com/in/manambhatt"
                 className="flex items-center gap-3 text-gray-700 hover:text-gray-900"
               >
                 <Linkedin className="w-6 h-6" />
-                linkedin.com/in/yourusername
+                linkedin.com/in/manambhatt
               </a>
               <a 
-                href="mailto:your.email@example.com"
+                href="mailto:manambhatt@gmail.com"
                 className="flex items-center gap-3 text-gray-700 hover:text-gray-900"
               >
                 <Mail className="w-6 h-6" />
-                your.email@example.com
+                manambhatt@gmail.com
               </a>
             </div>
           </div>
