@@ -79,6 +79,7 @@ const Hero = () => {
         initial="hidden"
         animate="visible"
       >
+        {/* Line 1: Hi, my name is */}
         <motion.p 
           className="text-accent mb-4 font-mono"
           variants={itemVariants}
@@ -86,22 +87,25 @@ const Hero = () => {
           Hi, my name is
         </motion.p>
 
+        {/* Line 2: Manam Bhatt */}
         <motion.h1 
-          className="text-5xl md:text-7xl font-bold mb-4 text-light-slate typing-name" 
+          className="text-5xl md:text-7xl font-bold mb-4 text-light-slate"
           variants={itemVariants}
         >
           Manam Bhatt
         </motion.h1>
 
+        {/* Line 3: Senior DevOps Engineer | Cloud & Automation Specialist */}
         <motion.p 
-          className="text-xl md:text-2xl mb-8 text-slate typing-description" 
+          className="text-xl md:text-2xl mb-4 text-slate"
           variants={itemVariants}
         >
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
 
+        {/* Line 4: Current Description */}
         <motion.p 
-          className="text-xl md:text-2xl mb-8 text-slate typing-description" 
+          className="text-xl md:text-2xl mb-8 text-slate"
           variants={itemVariants}
         >
           {descriptions[currentDescription]}
