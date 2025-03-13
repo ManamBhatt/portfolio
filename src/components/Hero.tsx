@@ -2,41 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
-  const descriptions = [
-    "I manage code versioning and collaboration using Git.",
-    "I automate CI/CD workflows with GitHub Actions.",
-    "I set up GitLab pipelines for continuous integration and deployment.",
-    "I build and automate CI/CD pipelines with AWS CodePipeline.",
-    "I create and manage CI/CD pipelines using Azure DevOps.",
-    "I automate software builds and deployments with Jenkins.",
-    "I provision and manage cloud infrastructure using Terraform.",
-    "I automate configuration management with Ansible.",
-    "I containerize applications with Docker.",
-    "I deploy and manage containerized applications with Kubernetes.",
-    "I automate the build and dependency management process with Maven.",
-    "I manage JavaScript dependencies and scripts with NPM.",
-    "I monitor and analyze logs and machine data with Splunk.",
-    "I monitor and alert on system metrics with Prometheus.",
-    "I visualize and analyze data with Grafana dashboards.",
-    "I perform static code analysis to improve code quality with SonarQube.",
-    "I identify and manage open-source vulnerabilities with Blackduck.",
-    "I conduct security vulnerability scanning using Fortify.",
-    "I manage and control access to AWS resources using AWS IAM.",
-    "I ensure the security of Azure environments with Azure Security Center.",
-    "I track and manage project tasks and bugs with JIRA.",
-    "I create and collaborate on documentation and knowledge bases using Confluence.",
-    "I manage and track work items with Azure Boards.",
-    "I manage IT service workflows and incidents with ServiceNow.",
-    "I define configuration files and data structures with YAML.",
-    "I write shell scripts for automation using BASH.",
-    "I automate tasks and write scripts using Python.",
-    "I structure data and configurations with JSON.",
-    "I provision and manage cloud resources on Microsoft Azure.",
-    "I manage cloud infrastructure on Amazon Web Services (AWS).",
-    "I provision and manage resources on Google Cloud Platform (GCP).",
-    "I manage and deliver projects using Agile methodologies.",
-    "I implement Scrum frameworks for efficient project management and delivery."
-  ];
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
 
   const [currentDescription, setCurrentDescription] = useState(0);
   const [currentText, setCurrentText] = useState("");
@@ -73,7 +58,7 @@ const Hero = () => {
           clearInterval(deletingTimeout);
           // Start typing the next sentence after delete
           setTimeout(() => {
-            setCurrentDescription((prev) => (prev + 1) % descriptions.length); // Circularly increment description
+            setCurrentDescription((prev) => (prev + 1) % 1); // Set the condition for loop
           }, 500); // Wait 0.5s before starting next sentence
         }
       }, 50); // Deleting speed (50ms per letter)
@@ -81,7 +66,7 @@ const Hero = () => {
 
     const startTyping = () => {
       setCurrentText(""); // Reset text
-      typeText(descriptions[currentDescription]);
+      typeText("I manage code versioning and collaboration using Git."); // You can change this to any sentence you want to type
     };
 
     const blinkCursor = () => {
@@ -99,7 +84,7 @@ const Hero = () => {
       clearInterval(deletingTimeout);
       clearInterval(cursorBlinkTimeout);
     };
-  }, [currentDescription]); // This will trigger when currentDescription changes
+  }, [currentDescription]);
 
   return (
     <div className="h-screen flex items-center justify-center bg-deep-blue relative overflow-hidden">
@@ -107,13 +92,14 @@ const Hero = () => {
       
       <motion.div 
         className="text-center z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
         {/* Line 1: Hi, my name is */}
         <motion.p 
           className="text-accent mb-4 font-mono"
+          variants={itemVariants}
         >
           Hi, my name is
         </motion.p>
@@ -121,6 +107,7 @@ const Hero = () => {
         {/* Line 2: Manam Bhatt */}
         <motion.h1 
           className="text-5xl md:text-7xl font-bold mb-4 text-light-slate"
+          variants={itemVariants}
         >
           Manam Bhatt
         </motion.h1>
@@ -128,20 +115,24 @@ const Hero = () => {
         {/* Line 3: Senior DevOps Engineer | Cloud & Automation Specialist */}
         <motion.p 
           className="text-xl md:text-2xl mb-4 text-slate"
+          variants={itemVariants}
         >
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
 
-        {/* Line 4: Typing effect for the sentence */}
+        {/* Line 4: Static "I can" + Typing effect for the rest of the sentence */}
         <motion.p 
           className="text-xl md:text-2xl mb-8 text-slate flex items-center justify-center"
+          variants={itemVariants}
         >
+          <span className="mr-2">I can</span>
           <span className="animate-typing">{currentText}</span>
           <span className={`cursor-blink ${isCursorVisible ? 'visible' : 'invisible'}`}>|</span>
         </motion.p>
 
         <motion.button 
           className="btn-primary"
+          variants={itemVariants}
         >
           View My Work
         </motion.button>
