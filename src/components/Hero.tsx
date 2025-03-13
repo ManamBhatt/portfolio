@@ -23,9 +23,7 @@ const Hero = () => {
     }
   };
 
-  const [currentDescription, setCurrentDescription] = useState(0);
   const [currentText, setCurrentText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
   const [isCursorVisible, setIsCursorVisible] = useState(true);
 
   useEffect(() => {
@@ -35,7 +33,6 @@ const Hero = () => {
 
     const typeText = (text: string) => {
       let index = 0;
-      setIsTyping(true);
       setIsCursorVisible(true);
       typingTimeout = setInterval(() => {
         setCurrentText((prev) => prev + text[index]);
@@ -50,24 +47,17 @@ const Hero = () => {
 
     const deleteText = () => {
       let index = currentText.length;
-      setIsTyping(false);
       deletingTimeout = setInterval(() => {
         setCurrentText((prev) => prev.slice(0, index - 1));
         index -= 1;
         if (index === 0) {
           clearInterval(deletingTimeout);
-          // Start typing the next sentence after delete
-          setTimeout(() => {
-            setCurrentDescription((prev) => (prev + 1) % 1); // Set the condition for loop
-          }, 500); // Wait 0.5s before starting next sentence
+          // You can set the next text or stop here
         }
       }, 50); // Deleting speed (50ms per letter)
     };
 
-    const startTyping = () => {
-      setCurrentText(""); // Reset text
-      typeText("I manage code versioning and collaboration using Git."); // You can change this to any sentence you want to type
-    };
+    typeText("I manage code versioning and collaboration using Git.");
 
     const blinkCursor = () => {
       cursorBlinkTimeout = setInterval(() => {
@@ -75,7 +65,6 @@ const Hero = () => {
       }, 500); // Cursor blinks every 500ms
     };
 
-    startTyping();
     blinkCursor();
 
     // Clean up intervals and timeouts when component unmounts
@@ -84,7 +73,7 @@ const Hero = () => {
       clearInterval(deletingTimeout);
       clearInterval(cursorBlinkTimeout);
     };
-  }, [currentDescription]);
+  }, [currentText]);
 
   return (
     <div className="h-screen flex items-center justify-center bg-deep-blue relative overflow-hidden">
@@ -120,12 +109,11 @@ const Hero = () => {
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
 
-        {/* Line 4: Static "I can" + Typing effect for the rest of the sentence */}
+        {/* Typing effect */}
         <motion.p 
           className="text-xl md:text-2xl mb-8 text-slate flex items-center justify-center"
           variants={itemVariants}
         >
-          <span className="mr-2">I can</span>
           <span className="animate-typing">{currentText}</span>
           <span className={`cursor-blink ${isCursorVisible ? 'visible' : 'invisible'}`}>|</span>
         </motion.p>
@@ -142,3 +130,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
