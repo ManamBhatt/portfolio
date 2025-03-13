@@ -72,83 +72,20 @@
   }
 }
 
-/* Applying the typing animation to the span */
-.animate-typing {
+/* Typing animation applied to text */
+.typing-text {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
-  animation: typing 15s steps(30) 1s forwards;
+  border-right: 2px solid #fff;
+  animation: typing 3s steps(30) forwards;
 }
 
-/* Custom cursor blink effect */
+/* Blinking cursor effect */
 .cursor-blink {
   display: inline-block;
   width: 0;
   height: 1.5rem; /* Adjust height to match line height */
   border-right: 2px solid #fff;
   animation: blink 0.75s infinite step-end;
-}
-
-.cursor-blink.invisible {
-  border-color: transparent;
-}
-
-@layer components {
-  /* Customize general text styles */
-  .text-light-slate {
-    color: #a0aec0;
-  }
-
-  .text-accent {
-    color: #64FFDA;
-  }
-
-  .bg-deep-blue {
-    background-color: #0A192F;
-  }
-
-  .bg-navy {
-    background-color: #1A2636;
-  }
-
-  .bg-accent {
-    background-color: #64FFDA;
-  }
-
-  /* Glass effect for cards */
-  .glass-card {
-    background-color: rgba(26, 38, 54, 0.3);
-    backdrop-filter: blur(10px);
-    border-radius: 8px;
-    border: 1px solid rgba(100, 255, 218, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Button glow animation */
-  .animate-glow {
-    animation: glow 1.5s infinite alternate;
-  }
-
-  @keyframes glow {
-    from {
-      box-shadow: 0 0 10px rgba(100, 255, 218, 0.7);
-    }
-    to {
-      box-shadow: 0 0 20px rgba(100, 255, 218, 1);
-    }
-  }
-
-  /* Smooth fade-in */
-  .fade-in {
-    animation: fadeIn 2s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 }
