@@ -120,7 +120,7 @@ const Hero = () => {
       clearInterval(deletingTimeout);
       clearInterval(cursorBlinkTimeout);
     };
-  }, [currentDescription]);
+  }, [currentDescription]); // This will trigger when currentDescription changes
 
   return (
     <div className="h-screen flex items-center justify-center bg-deep-blue relative overflow-hidden">
