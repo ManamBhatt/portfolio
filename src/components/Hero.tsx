@@ -43,7 +43,7 @@ const Hero = () => {
           className="text-5xl md:text-7xl font-bold mb-4 text-light-slate"
           variants={itemVariants}
         >
-          Your Name
+          Manam Bhatt
         </motion.h1>
         <motion.p 
           className="text-xl md:text-2xl mb-8 text-slate"
