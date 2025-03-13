@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
+// List of "I can" sentences
 const sentences = [
   "I can manage code versioning and collaboration using Git.",
   "I can automate CI/CD workflows using GitHub Actions.",
