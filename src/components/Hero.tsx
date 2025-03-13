@@ -2,27 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
   const descriptions = [
     "I manage code versioning and collaboration using Git.",
     "I automate CI/CD workflows with GitHub Actions.",
@@ -128,14 +107,13 @@ const Hero = () => {
       
       <motion.div 
         className="text-center z-10"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       >
         {/* Line 1: Hi, my name is */}
         <motion.p 
           className="text-accent mb-4 font-mono"
-          variants={itemVariants}
         >
           Hi, my name is
         </motion.p>
@@ -143,7 +121,6 @@ const Hero = () => {
         {/* Line 2: Manam Bhatt */}
         <motion.h1 
           className="text-5xl md:text-7xl font-bold mb-4 text-light-slate"
-          variants={itemVariants}
         >
           Manam Bhatt
         </motion.h1>
@@ -151,7 +128,6 @@ const Hero = () => {
         {/* Line 3: Senior DevOps Engineer | Cloud & Automation Specialist */}
         <motion.p 
           className="text-xl md:text-2xl mb-4 text-slate"
-          variants={itemVariants}
         >
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
@@ -159,7 +135,6 @@ const Hero = () => {
         {/* Line 4: Typing effect for the sentence */}
         <motion.p 
           className="text-xl md:text-2xl mb-8 text-slate flex items-center justify-center"
-          variants={itemVariants}
         >
           <span className="animate-typing">{currentText}</span>
           <span className={`cursor-blink ${isCursorVisible ? 'visible' : 'invisible'}`}>|</span>
@@ -167,7 +142,6 @@ const Hero = () => {
 
         <motion.button 
           className="btn-primary"
-          variants={itemVariants}
         >
           View My Work
         </motion.button>
