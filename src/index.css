@@ -55,14 +55,45 @@
   }
 }
 
-/* Typing effect */
-@keyframes typing {
-  from {
-    width: 0;
+/* Fade in and out for each sentence */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  to {
-    width: 100%;
+  25% {
+    opacity: 1;
+    transform: translateY(0);
   }
+  75% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Apply fadeInOut animation to text */
+.fade-text {
+  animation: fadeInOut 10s infinite ease-in-out;
+}
+
+/* General Text Styling */
+.typing-text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 0;
+  height: 1.5rem; /* Adjust height to match line height */
+  border-right: 2px solid #fff;
+  animation: blink 0.75s infinite step-end;
 }
 
 /* Blinking cursor animation */
@@ -70,22 +101,4 @@
   50% {
     border-color: transparent;
   }
-}
-
-/* Typing animation applied to text */
-.typing-text {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid #fff;
-  animation: typing 3s steps(30) forwards;
-}
-
-/* Blinking cursor effect */
-.cursor-blink {
-  display: inline-block;
-  width: 0;
-  height: 1.5rem; /* Adjust height to match line height */
-  border-right: 2px solid #fff;
-  animation: blink 0.75s infinite step-end;
 }
