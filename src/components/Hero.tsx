@@ -41,11 +41,10 @@ const TypingEffect = () => {
   const [currentSentence, setCurrentSentence] = useState(sentences[0]);
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
-  const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
     let charIndex = 0;
-    const typingSpeed = 100; // Slower typing speed
+    const typingSpeed = 100; // Adjust typing speed
     const sentence = sentences[index];
 
     const typeText = () => {
@@ -55,12 +54,8 @@ const TypingEffect = () => {
         setTimeout(typeText, typingSpeed);
       } else {
         setTimeout(() => {
-          setShowCursor(false);
-          setTimeout(() => {
-            setShowCursor(true);
-            setIndex((prev) => (prev + 1) % sentences.length);
-          }, 1000);
-        }, 1000);
+          setIndex((prev) => (prev + 1) % sentences.length);
+        }, 1500); // Delay before switching sentence
       }
     };
 
@@ -69,9 +64,8 @@ const TypingEffect = () => {
   }, [index]);
 
   return (
-    <p className="text-xl md:text-2xl text-slate text-center mt-4">
+    <p className="text-xl md:text-2xl text-slate text-center mt-4 whitespace-nowrap overflow-hidden">
       I can <span className="typing-text">{displayText}</span>
-      {showCursor && <span className="cursor-blink">|</span>}
     </p>
   );
 };
