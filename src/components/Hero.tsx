@@ -24,39 +24,39 @@ const Hero = () => {
   };
 
   const descriptions = [
-    "I can manage code versioning and collaboration using Git.",
-    "I can automate CI/CD workflows using GitHub Actions.",
-    "I can set up GitLab pipelines for continuous integration and deployment.",
-    "I can build and automate CI/CD pipelines using AWS CodePipeline.",
-    "I can create and manage CI/CD pipelines using Azure DevOps.",
-    "I can automate software builds and deployments with Jenkins.",
-    "I can provision and manage cloud infrastructure using Terraform.",
-    "I can automate configuration management using Ansible.",
-    "I can containerize applications using Docker.",
-    "I can deploy and manage containerized applications with Kubernetes.",
-    "I can automate the build and dependency management process using Maven.",
-    "I can manage JavaScript dependencies and scripts with NPM.",
-    "I can monitor and analyze logs and machine data with Splunk.",
-    "I can monitor and alert on system metrics using Prometheus.",
-    "I can visualize and analyze data using Grafana dashboards.",
-    "I can perform static code analysis and improve code quality with SonarQube.",
-    "I can identify and manage open-source vulnerabilities with Blackduck.",
-    "I can conduct security vulnerability scanning using Fortify.",
-    "I can manage and control access to AWS resources with AWS IAM.",
-    "I can ensure the security of Azure environments using Azure Security Center.",
-    "I can track and manage project tasks and bugs using JIRA.",
-    "I can create and collaborate on documentation and knowledge bases using Confluence.",
-    "I can manage and track work items with Azure Boards.",
-    "I can manage IT service workflows and incidents with ServiceNow.",
-    "I can define configuration files and data structures using YAML.",
-    "I can write shell scripts for automation using BASH.",
-    "I can automate tasks and write scripts using Python.",
-    "I can structure data and configurations using JSON.",
-    "I can provision and manage cloud resources on Microsoft Azure.",
-    "I can manage cloud infrastructure on Amazon Web Services (AWS).",
-    "I can provision and manage resources on Google Cloud Platform (GCP).",
-    "I can manage and deliver projects using Agile methodologies.",
-    "I can implement Scrum framework for efficient project management and delivery."
+    "manage code versioning and collaboration using Git.",
+    "automate CI/CD workflows using GitHub Actions.",
+    "set up GitLab pipelines for continuous integration and deployment.",
+    "build and automate CI/CD pipelines using AWS CodePipeline.",
+    "create and manage CI/CD pipelines using Azure DevOps.",
+    "automate software builds and deployments with Jenkins.",
+    "provision and manage cloud infrastructure using Terraform.",
+    "automate configuration management using Ansible.",
+    "containerize applications using Docker.",
+    "deploy and manage containerized applications with Kubernetes.",
+    "automate the build and dependency management process using Maven.",
+    "manage JavaScript dependencies and scripts with NPM.",
+    "monitor and analyze logs and machine data with Splunk.",
+    "monitor and alert on system metrics using Prometheus.",
+    "visualize and analyze data using Grafana dashboards.",
+    "perform static code analysis and improve code quality with SonarQube.",
+    "identify and manage open-source vulnerabilities with Blackduck.",
+    "conduct security vulnerability scanning using Fortify.",
+    "manage and control access to AWS resources with AWS IAM.",
+    "ensure the security of Azure environments using Azure Security Center.",
+    "track and manage project tasks and bugs using JIRA.",
+    "create and collaborate on documentation and knowledge bases using Confluence.",
+    "manage and track work items with Azure Boards.",
+    "manage IT service workflows and incidents with ServiceNow.",
+    "define configuration files and data structures using YAML.",
+    "write shell scripts for automation using BASH.",
+    "automate tasks and write scripts using Python.",
+    "structure data and configurations using JSON.",
+    "provision and manage cloud resources on Microsoft Azure.",
+    "manage cloud infrastructure on Amazon Web Services (AWS).",
+    "provision and manage resources on Google Cloud Platform (GCP).",
+    "manage and deliver projects using Agile methodologies.",
+    "implement Scrum framework for efficient project management and delivery."
   ];
 
   const [currentDescription, setCurrentDescription] = useState(0);
@@ -103,12 +103,13 @@ const Hero = () => {
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
 
-        {/* Line 4: Current Description */}
+        {/* Line 4: Static "I can" + Typing effect for the rest of the sentence */}
         <motion.p 
-          className="text-xl md:text-2xl mb-8 text-slate"
+          className="text-xl md:text-2xl mb-8 text-slate flex items-center justify-center"
           variants={itemVariants}
         >
-          {descriptions[currentDescription]}
+          <span className="mr-2">I can</span> 
+          <span className="animate-typing cursor-blink">{descriptions[currentDescription]}</span>
         </motion.p>
 
         <motion.button 
