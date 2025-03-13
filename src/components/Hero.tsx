@@ -12,63 +12,28 @@ const sentences = [
   "I can automate configuration management using Ansible.",
   "I can containerize applications using Docker.",
   "I can deploy and manage containerized applications with Kubernetes.",
-  "I can automate the build and dependency management process using Maven.",
-  "I can manage JavaScript dependencies and scripts with NPM.",
-  "I can monitor and analyze logs and machine data with Splunk.",
-  "I can monitor and alert on system metrics using Prometheus.",
-  "I can visualize and analyze data using Grafana dashboards.",
-  "I can perform static code analysis and improve code quality with SonarQube.",
-  "I can identify and manage open-source vulnerabilities with Blackduck.",
-  "I can conduct security vulnerability scanning using Fortify.",
-  "I can manage and control access to AWS resources with AWS IAM.",
-  "I can ensure the security of Azure environments using Azure Security Center.",
-  "I can track and manage project tasks and bugs using JIRA.",
-  "I can create and collaborate on documentation and knowledge bases using Confluence.",
-  "I can manage and track work items with Azure Boards.",
-  "I can manage IT service workflows and incidents with ServiceNow.",
-  "I can define configuration files and data structures using YAML.",
-  "I can write shell scripts for automation using BASH.",
-  "I can automate tasks and write scripts using Python.",
-  "I can structure data and configurations using JSON.",
-  "I can provision and manage cloud resources on Microsoft Azure.",
-  "I can manage cloud infrastructure on Amazon Web Services (AWS).",
-  "I can provision and manage resources on Google Cloud Platform (GCP).",
-  "I can manage and deliver projects using Agile methodologies.",
-  "I can implement Scrum framework for efficient project management and delivery.",
 ];
 
-const TypingEffect = ({ text, speed }: { text: string; speed: number }) => {
+const TypingEffect = ({ text, speed, onComplete }: { text: string; speed: number; onComplete?: () => void }) => {
   const [displayText, setDisplayText] = useState("");
-  const [typing, setTyping] = useState(true);
+  const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
     let charIndex = 0;
+
     const typeText = () => {
-      if (charIndex <= text.length) {
-        setDisplayText(text.substring(0, charIndex));
+      if (charIndex < text.length) {
+        setDisplayText((prev) => prev + text[charIndex]);
         charIndex++;
         setTimeout(typeText, speed);
       } else {
-        setTimeout(() => deleteText(), 1000);
+        setIsTyping(false);
+        if (onComplete) setTimeout(onComplete, 1000);
       }
     };
 
-    const deleteText = () => {
-      let deleteIndex = text.length;
-      const erase = () => {
-        if (deleteIndex >= 0) {
-          setDisplayText(text.substring(0, deleteIndex));
-          deleteIndex--;
-          setTimeout(erase, speed / 2);
-        } else {
-          setTyping(false);
-        }
-      };
-      erase();
-    };
-
-    setTyping(true);
     setDisplayText("");
+    setIsTyping(true);
     typeText();
   }, [text]);
 
@@ -77,13 +42,17 @@ const TypingEffect = ({ text, speed }: { text: string; speed: number }) => {
 
 const Hero = () => {
   const [sentenceIndex, setSentenceIndex] = useState(0);
-  const [showTyping, setShowTyping] = useState(true);
+  const [showSentence, setShowSentence] = useState(false);
 
   useEffect(() => {
+    setTimeout(() => setShowSentence(true), 4000); // Wait for intro to finish typing
     const interval = setInterval(() => {
-      setSentenceIndex((prev) => (prev + 1) % sentences.length);
-      setShowTyping(true);
-    }, 6000); // Ensures complete typing and erasing before switching sentences
+      setShowSentence(false);
+      setTimeout(() => {
+        setSentenceIndex((prev) => (prev + 1) % sentences.length);
+        setShowSentence(true);
+      }, 500); // Short delay before next sentence starts typing
+    }, 5000); // Full cycle (typing + delay + deletion)
 
     return () => clearInterval(interval);
   }, []);
@@ -105,6 +74,7 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Permanent Typing Animation for Name & Title */}
         <p className="text-accent mb-2 font-mono text-lg">
           <TypingEffect text="Hi, my name is" speed={100} />
         </p>
@@ -115,8 +85,9 @@ const Hero = () => {
           <TypingEffect text="Senior DevOps Engineer | Cloud & Automation Specialist" speed={100} />
         </p>
 
-        <div className="text-xl md:text-2xl text-slate">
-          {showTyping && <TypingEffect text={sentences[sentenceIndex]} speed={100} />}
+        {/* Rotating "I can" Sentences */}
+        <div className="text-xl md:text-2xl text-slate h-8">
+          {showSentence && <TypingEffect text={sentences[sentenceIndex]} speed={50} />}
         </div>
 
         <motion.button
