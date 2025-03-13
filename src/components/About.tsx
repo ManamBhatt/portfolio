@@ -3,6 +3,14 @@ import { Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const About = () => {
+  const handleDownloadResume = () => {
+    // Triggering the download of resume.pdf from the public folder
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Path to your resume PDF in the public folder
+    link.download = 'Resume_Manam_Bhatt.pdf'; // The name the file will have when downloaded
+    link.click();
+  };
+
   return (
     <section id="about" className="py-20 bg-navy">
       <motion.div 
@@ -35,16 +43,20 @@ const About = () => {
           <div>
             <h2 className="section-heading">About Me</h2>
             <p className="text-slate mb-6">
-            Certified Senior DevOps Engineer with 9 years of experience in CI/CD pipelines. <br />
-  Expertise in collaborating with development teams to streamline build, release, and deployment processes. <br />
-  Skilled in automating infrastructure using Terraform and Ansible. <br />
-  Strong background in database management, SQL optimization, and high availability. <br />
-  Experienced in containerization with Docker and Kubernetes. <br />
-  Proficient in scripting with Unix, Python, and YAML for automation and integration. <br />
-  Expertise in cloud computing and distributed systems across Azure, AWS, and Google Cloud. <br />
-  Proven leadership in team collaboration, project delivery, and problem-solving. <br /> 
+              - Certified Senior DevOps Engineer with 9 years of experience in CI/CD pipelines. <br />
+              - Expertise in collaborating with development teams to streamline build, release, and deployment processes. <br />
+              - Skilled in automating infrastructure using Terraform and Ansible. <br />
+              - Strong background in database management, SQL optimization, and high availability. <br />
+              - Experienced in containerization with Docker and Kubernetes. <br />
+              - Proficient in scripting with Unix, Python, and YAML for automation and integration. <br />
+              - Expertise in cloud computing and distributed systems across Azure, AWS, and Google Cloud. <br />
+              - Proven leadership in team collaboration, project delivery, and problem-solving. <br /> 
             </p>
-            <button className="btn-primary flex items-center gap-2">
+            {/* Button that triggers the resume download */}
+            <button 
+              className="btn-primary flex items-center gap-2"
+              onClick={handleDownloadResume}
+            >
               <Download className="w-5 h-5" />
               Download Resume
             </button>
