@@ -56,25 +56,41 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* Typing Animation */
-  @keyframes typing {
+  /* Typing Animation for Name */
+  @keyframes typingName {
     0% {
       width: 0;
     }
-    50% {
-      width: 100%;
-    }
     100% {
-      width: 0;
+      width: 13ch; /* Adjusted for "Manam Bhatt" */
     }
   }
 
-  .typing-animation {
+  .typing-name {
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid #64FFDA; /* Cursor effect */
     width: 0;
-    animation: typing 4s steps(20) infinite;
+    animation: typingName 60s steps(13) 1;
+  }
+
+  /* Typing Animation for Description */
+  @keyframes typingDescription {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  .typing-description {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #64FFDA; /* Cursor effect */
+    width: 0;
+    animation: typingDescription 10s steps(90) infinite;
   }
 }
