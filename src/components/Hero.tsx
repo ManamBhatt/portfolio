@@ -100,7 +100,7 @@ const Hero = () => {
           <TypingEffect text="Hi, my name is" speed={100} />
         </p>
         <p className="text-5xl md:text-7xl font-bold text-white mb-6">
-          <TypingEffect text="Manam Bhatt" speed={100} />
+          <TypingEffect text="Black myth wuknog" speed={100} />
         </p>
         <p className="text-xl md:text-2xl text-slate mb-6">
           <TypingEffect text="Senior DevOps Engineer | Cloud & Automation Specialist" speed={100} />
