@@ -37,41 +37,43 @@ const sentences = [
   "implement Scrum framework for efficient project management and delivery.",
 ];
 
-const TypingEffect = () => {
-  const [currentSentence, setCurrentSentence] = useState(sentences[0]);
+const TypingEffect = ({ text, speed, onComplete }: { text: string; speed: number; onComplete?: () => void }) => {
   const [displayText, setDisplayText] = useState("");
-  const [index, setIndex] = useState(0);
-
   useEffect(() => {
     let charIndex = 0;
-    const typingSpeed = 80; // Slower typing speed
-    const sentence = sentences[index];
-
     const typeText = () => {
-      if (charIndex <= sentence.length) {
-        setDisplayText(sentence.substring(0, charIndex));
+      if (charIndex <= text.length) {
+        setDisplayText(text.substring(0, charIndex));
         charIndex++;
-        setTimeout(typeText, typingSpeed);
-      } else {
-        setTimeout(() => {
-          setIndex((prev) => (prev + 1) % sentences.length);
-        }, 2000); // Small delay before switching sentence
+        setTimeout(typeText, speed);
+      } else if (onComplete) {
+        setTimeout(onComplete, 1000);
       }
     };
-
     setDisplayText(""); // Reset text before new sentence
     typeText();
-  }, [index]);
+  }, [text]);
 
-  return (
-    <div className="text-xl md:text-2xl text-slate flex items-center justify-center">
-      <span className="font-semibold">I can&nbsp;</span>
-      <span className="typing-text">{displayText}</span>
-    </div>
-  );
+  return <span>{displayText}</span>;
 };
 
 const Hero = () => {
+  const [showIntro, setShowIntro] = useState(false);
+  const [sentenceIndex, setSentenceIndex] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowIntro(true);
+    }, 3000); // Delay before showing the "I can" section
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSentenceIndex((prev) => (prev + 1) % sentences.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToWork = () => {
     const workSection = document.getElementById("work");
     if (workSection) {
@@ -82,41 +84,27 @@ const Hero = () => {
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-deep-blue relative overflow-hidden text-center">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-deep-blue to-deep-blue" />
-      
+
       <motion.div 
         className="z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <motion.p 
-          className="text-accent mb-4 font-mono"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          Hi, my name is
-        </motion.p>
-        <motion.h1 
-          className="text-5xl md:text-7xl font-bold mb-4 text-light-slate"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2 }}
-        >
-          Manam Bhatt
-        </motion.h1>
-        <motion.p 
-          className="text-xl md:text-2xl text-slate mb-6"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4 }}
-        >
-          Senior DevOps Engineer | Cloud & Automation Specialist
-        </motion.p>
-        
-        <TypingEffect />
-        
-        {/* View My Work Button */}
+        <p className="text-accent mb-4 font-mono">
+          <TypingEffect text="Hi, my name is Manam Bhatt" speed={100} />
+        </p>
+        <p className="text-xl md:text-2xl text-slate mb-6">
+          <TypingEffect text="Senior DevOps Engineer | Cloud & Automation Specialist" speed={100} />
+        </p>
+
+        {showIntro && (
+          <div className="text-xl md:text-2xl text-slate flex justify-center items-center">
+            <span className="font-semibold">I can&nbsp;</span>
+            <TypingEffect text={sentences[sentenceIndex]} speed={100} />
+          </div>
+        )}
+
         <motion.button
           className="mt-6 px-6 py-3 bg-transparent border border-accent text-accent rounded-lg hover:bg-accent/10 transition-all duration-300"
           initial={{ opacity: 0, y: 10 }}
