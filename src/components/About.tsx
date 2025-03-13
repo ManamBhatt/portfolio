@@ -35,14 +35,14 @@ const About = () => {
           <div>
             <h2 className="section-heading">About Me</h2>
             <p className="text-slate mb-6">
-            Certified Senior DevOps Engineer with 9 years of experience in CI/CD pipelines. 
-            Expertise in collaborating with development teams to streamline build, release, and deploy. 
-            Skilled in automating the infrastructure using Terraform and Ansible. 
-            Strong background in database management, SQL optimisation, and high availability. 
-            Experienced in containerization management using Docker and Kubernetes. 
-            Possessing scripting experience with Unix, Python, YAML for automation and integration. 
-            Expertise in cloud computing and distributed systems on Azure, AWS, and Google Cloud. 
-            Demonstrated leadership in team collaboration, project delivery, and problem-solving. 
+            Certified Senior DevOps Engineer with 9 years of experience in CI/CD pipelines. <br />
+  Expertise in collaborating with development teams to streamline build, release, and deployment processes. <br />
+  Skilled in automating infrastructure using Terraform and Ansible. <br />
+  Strong background in database management, SQL optimization, and high availability. <br />
+  Experienced in containerization with Docker and Kubernetes. <br />
+  Proficient in scripting with Unix, Python, and YAML for automation and integration. <br />
+  Expertise in cloud computing and distributed systems across Azure, AWS, and Google Cloud. <br />
+  Proven leadership in team collaboration, project delivery, and problem-solving. <br /> 
             </p>
             <button className="btn-primary flex items-center gap-2">
               <Download className="w-5 h-5" />
