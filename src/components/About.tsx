@@ -44,7 +44,7 @@ const About = () => {
             <h2 className="section-heading">About Me</h2>
             <p className="text-slate mb-6">
               - Certified Senior DevOps Engineer with 9 years of experience in CI/CD pipelines. <br />
-              - Expertise in collaborating with development teams to streamline build, release, and deployment processes. <br />
+              - Expertise in collaborating with development teams to streamline build, release, and deployments. <br />
               - Skilled in automating infrastructure using Terraform and Ansible. <br />
               - Strong background in database management, SQL optimization, and high availability. <br />
               - Experienced in containerization with Docker and Kubernetes. <br />
