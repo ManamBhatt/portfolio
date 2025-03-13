@@ -60,14 +60,67 @@ const Hero = () => {
   ];
 
   const [currentDescription, setCurrentDescription] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const [isCursorVisible, setIsCursorVisible] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentDescription(prev => (prev + 1) % descriptions.length);
-    }, 15000); // Change sentence every 15 seconds
+    let typingTimeout: NodeJS.Timeout;
+    let deletingTimeout: NodeJS.Timeout;
+    let cursorBlinkTimeout: NodeJS.Timeout;
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
+    const typeText = (text: string) => {
+      let index = 0;
+      setIsTyping(true);
+      setIsCursorVisible(true);
+      typingTimeout = setInterval(() => {
+        setCurrentText((prev) => prev + text[index]);
+        index += 1;
+        if (index === text.length) {
+          clearInterval(typingTimeout);
+          // Start deleting after typing is done
+          setTimeout(() => deleteText(), 2000); // Wait 2 seconds before starting delete
+        }
+      }, 100); // Typing speed (100ms per letter)
+    };
+
+    const deleteText = () => {
+      let index = currentText.length;
+      setIsTyping(false);
+      deletingTimeout = setInterval(() => {
+        setCurrentText((prev) => prev.slice(0, index - 1));
+        index -= 1;
+        if (index === 0) {
+          clearInterval(deletingTimeout);
+          // Start typing the next sentence after delete
+          setTimeout(() => {
+            setCurrentDescription((prev) => (prev + 1) % descriptions.length);
+          }, 500); // Wait 0.5s before starting next sentence
+        }
+      }, 50); // Deleting speed (50ms per letter)
+    };
+
+    const startTyping = () => {
+      setCurrentText(""); // Reset text
+      typeText(descriptions[currentDescription]);
+    };
+
+    const blinkCursor = () => {
+      cursorBlinkTimeout = setInterval(() => {
+        setIsCursorVisible((prev) => !prev);
+      }, 500); // Cursor blinks every 500ms
+    };
+
+    startTyping();
+    blinkCursor();
+
+    // Clean up intervals and timeouts when component unmounts
+    return () => {
+      clearInterval(typingTimeout);
+      clearInterval(deletingTimeout);
+      clearInterval(cursorBlinkTimeout);
+    };
+  }, [currentDescription]);
 
   return (
     <div className="h-screen flex items-center justify-center bg-deep-blue relative overflow-hidden">
@@ -108,8 +161,9 @@ const Hero = () => {
           className="text-xl md:text-2xl mb-8 text-slate flex items-center justify-center"
           variants={itemVariants}
         >
-          <span className="mr-2">I can</span> 
-          <span className="animate-typing cursor-blink">{descriptions[currentDescription]}</span>
+          <span className="mr-2">I can</span>
+          <span className="animate-typing">{currentText}</span>
+          <span className={`cursor-blink ${isCursorVisible ? 'visible' : 'invisible'}`}>|</span>
         </motion.p>
 
         <motion.button 
