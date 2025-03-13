@@ -37,8 +37,9 @@ const sentences = [
   "I can implement Scrum framework for efficient project management and delivery.",
 ];
 
-const TypingEffect = ({ text, speed, onComplete }: { text: string; speed: number; onComplete?: () => void }) => {
+const TypingEffect = ({ text, speed }: { text: string; speed: number }) => {
   const [displayText, setDisplayText] = useState("");
+  const [typing, setTyping] = useState(true);
 
   useEffect(() => {
     let charIndex = 0;
@@ -47,11 +48,27 @@ const TypingEffect = ({ text, speed, onComplete }: { text: string; speed: number
         setDisplayText(text.substring(0, charIndex));
         charIndex++;
         setTimeout(typeText, speed);
-      } else if (onComplete) {
-        setTimeout(onComplete, 1000);
+      } else {
+        setTimeout(() => deleteText(), 1000);
       }
     };
-    setDisplayText(""); // Reset before new sentence
+
+    const deleteText = () => {
+      let deleteIndex = text.length;
+      const erase = () => {
+        if (deleteIndex >= 0) {
+          setDisplayText(text.substring(0, deleteIndex));
+          deleteIndex--;
+          setTimeout(erase, speed / 2);
+        } else {
+          setTyping(false);
+        }
+      };
+      erase();
+    };
+
+    setTyping(true);
+    setDisplayText("");
     typeText();
   }, [text]);
 
@@ -60,11 +77,14 @@ const TypingEffect = ({ text, speed, onComplete }: { text: string; speed: number
 
 const Hero = () => {
   const [sentenceIndex, setSentenceIndex] = useState(0);
+  const [showTyping, setShowTyping] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setSentenceIndex((prev) => (prev + 1) % sentences.length);
-    }, 4000);
+      setShowTyping(true);
+    }, 6000); // Ensures complete typing and erasing before switching sentences
+
     return () => clearInterval(interval);
   }, []);
 
@@ -96,7 +116,7 @@ const Hero = () => {
         </p>
 
         <div className="text-xl md:text-2xl text-slate">
-          <TypingEffect text={sentences[sentenceIndex]} speed={100} />
+          {showTyping && <TypingEffect text={sentences[sentenceIndex]} speed={100} />}
         </div>
 
         <motion.button
