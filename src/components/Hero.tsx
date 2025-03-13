@@ -51,12 +51,15 @@ const Hero = () => {
         >
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
-        <motion.button 
+        
+        {/* Use an anchor tag to scroll to the work section */}
+        <motion.a 
+          href="#work" // Add the target section's ID here
           className="btn-primary"
           variants={itemVariants}
         >
           View My Work
-        </motion.button>
+        </motion.a>
       </motion.div>
     </div>
   );
