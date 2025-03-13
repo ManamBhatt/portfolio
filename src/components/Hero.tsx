@@ -24,7 +24,7 @@ const Hero = () => {
   };
 
   const descriptions = [
-    "manage code versioning and collaboration using Git.",
+    "I manage code versioning and collaboration using Git",
     "automate CI/CD workflows with GitHub Actions.",
     "set up GitLab pipelines for continuous integration and deployment.",
     "build and automate CI/CD pipelines with AWS CodePipeline.",
