@@ -5,8 +5,8 @@ const projects = [
   {
     title: 'Enterprise CI/CD Pipeline',
     description: 'Automated deployment pipeline using Jenkins, Docker, and Kubernetes',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80',
-    github: 'https://github.com/yourusername/cicd-pipeline',
+    image: 'portfolio/Untitled.jpg',
+    github: 'https://github.com/ManamBhatt',
     demo: 'https://your-demo-url.com'
   },
   {
