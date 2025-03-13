@@ -25,38 +25,38 @@ const Hero = () => {
 
   const descriptions = [
     "manage code versioning and collaboration using Git.",
-    "automate CI/CD workflows using GitHub Actions.",
+    "automate CI/CD workflows with GitHub Actions.",
     "set up GitLab pipelines for continuous integration and deployment.",
-    "build and automate CI/CD pipelines using AWS CodePipeline.",
+    "build and automate CI/CD pipelines with AWS CodePipeline.",
     "create and manage CI/CD pipelines using Azure DevOps.",
     "automate software builds and deployments with Jenkins.",
     "provision and manage cloud infrastructure using Terraform.",
-    "automate configuration management using Ansible.",
-    "containerize applications using Docker.",
+    "automate configuration management with Ansible.",
+    "containerize applications with Docker.",
     "deploy and manage containerized applications with Kubernetes.",
-    "automate the build and dependency management process using Maven.",
+    "automate the build and dependency management process with Maven.",
     "manage JavaScript dependencies and scripts with NPM.",
     "monitor and analyze logs and machine data with Splunk.",
-    "monitor and alert on system metrics using Prometheus.",
-    "visualize and analyze data using Grafana dashboards.",
-    "perform static code analysis and improve code quality with SonarQube.",
+    "monitor and alert on system metrics with Prometheus.",
+    "visualize and analyze data with Grafana dashboards.",
+    "perform static code analysis to improve code quality with SonarQube.",
     "identify and manage open-source vulnerabilities with Blackduck.",
     "conduct security vulnerability scanning using Fortify.",
-    "manage and control access to AWS resources with AWS IAM.",
-    "ensure the security of Azure environments using Azure Security Center.",
-    "track and manage project tasks and bugs using JIRA.",
+    "manage and control access to AWS resources using AWS IAM.",
+    "ensure the security of Azure environments with Azure Security Center.",
+    "track and manage project tasks and bugs with JIRA.",
     "create and collaborate on documentation and knowledge bases using Confluence.",
     "manage and track work items with Azure Boards.",
     "manage IT service workflows and incidents with ServiceNow.",
-    "define configuration files and data structures using YAML.",
+    "define configuration files and data structures with YAML.",
     "write shell scripts for automation using BASH.",
     "automate tasks and write scripts using Python.",
-    "structure data and configurations using JSON.",
+    "structure data and configurations with JSON.",
     "provision and manage cloud resources on Microsoft Azure.",
     "manage cloud infrastructure on Amazon Web Services (AWS).",
     "provision and manage resources on Google Cloud Platform (GCP).",
     "manage and deliver projects using Agile methodologies.",
-    "implement Scrum framework for efficient project management and delivery."
+    "implement Scrum frameworks for efficient project management and delivery."
   ];
 
   const [currentDescription, setCurrentDescription] = useState(0);
@@ -94,7 +94,7 @@ const Hero = () => {
           clearInterval(deletingTimeout);
           // Start typing the next sentence after delete
           setTimeout(() => {
-            setCurrentDescription((prev) => (prev + 1) % descriptions.length);
+            setCurrentDescription((prev) => (prev + 1) % descriptions.length); // Circularly increment description
           }, 500); // Wait 0.5s before starting next sentence
         }
       }, 50); // Deleting speed (50ms per letter)
