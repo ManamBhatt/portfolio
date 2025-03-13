@@ -53,7 +53,7 @@ const TypingEffect = ({ text, speed, onComplete }: { text: string; speed: number
       }
     };
 
-    setDisplayText("");
+    setDisplayText(""); // Reset text before starting typing effect
     typeText();
   }, [text]);
 
