@@ -1,136 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
 
-const descriptions = [
-  "Manage code versioning and collaboration using Git.",
-  "Deploy and manage containerized applications with Kubernetes.",
-  "Automate infrastructure provisioning with Terraform.",
-  "Create and collaborate on documentation using Confluence.",
-  "Automate the build and deployment process with Jenkins."
-];
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-const typingVariants = {
-  hidden: { width: 0 },
-  visible: { width: '100%', transition: { duration: 2, ease: 'linear' } }
-};
+@layer base {
+  * {
+    @apply box-border m-0 p-0;
+  }
+  html, body {
+    @apply bg-gray-900 text-white font-inter;
+    scroll-behavior: smooth;
+  }
+}
 
-const blinkVariants = {
-  visible: { opacity: 1 },
-  hidden: { opacity: 0 }
-};
+@layer components {
+  .glass-bg {
+    @apply bg-opacity-20 backdrop-blur-md shadow-lg p-6 rounded-2xl;
+  }
+  .nav-link {
+    @apply text-gray-300 hover:text-accent transition-colors duration-300 relative;
+  }
+  .btn-primary {
+    @apply px-6 py-3 bg-teal-400 text-gray-900 font-bold rounded-xl transition-all duration-300 hover:bg-teal-300;
+  }
+}
 
-const fadeUpVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  exit: { opacity: 0, y: -20, transition: { duration: 0.6 } }
-};
+/* Typing effect animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
 
-const Hero: React.FC = () => {
-  const [index, setIndex] = useState(0);
-  const [text, setText] = React.useState("");
-  const [isCursorVisible, setIsCursorVisible] = useState(true);
+/* Blinking cursor animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
-  useEffect(() => {
-    let currentIndex = 0;
-    let currentText = "";
-    let currentDesc = descriptions[index];
-    let typingInterval: NodeJS.Timeout;
-    let deleteInterval: NodeJS.Timeout;
-    let cursorInterval: NodeJS.Timeout;
-    
-    const typeText = () => {
-      let charIndex = 0;
-      typingInterval = setInterval(() => {
-        setText(currentText => currentText + currentText.length < currentDescription.length ? currentDescription[charIndex++] : '');
-        if (charIndex === currentDescription.length) {
-          clearInterval(typingInterval);
-          setTimeout(() => deleteText(), 2000);
-        }
-      }, 100);
-    };
+/* Typing effect styles */
+.typing-container {
+  @apply inline-flex items-center;
+}
 
-    const deleteText = () => {
-      deleteInterval = setInterval(() => {
-        setText(currentText => {
-          if (currentText.length === 0) {
-            clearInterval(deleteInterval);
-            setIndex((prev) => (prev + 1) % descriptions.length);
-            return '';
-          }
-          return currentText.slice(0, -1);
-      });
-    }, 50);
-    };
+.animate-typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #64FFDA;
+  padding-right: 4px;
+  animation: typing 3s steps(40, end) infinite;
+}
 
-    const cursorBlink = () => {
-      cursorInterval = setInterval(() => {
-        setIsCursorVisible((prev) => !prev);
-      }, 500);
-    };
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 24px;
+  background: #64FFDA;
+  margin-left: 4px;
+  animation: blink 0.8s infinite;
+}
 
-    let currentDescription = descriptions[index];
-    setText("");
-    typeText();
-    cursorInterval = setInterval(() => setIsCursorVisible((prev) => !prev), 500);
-
-    return () => {
-      clearInterval(typingInterval);
-      clearInterval(deleteInterval);
-      clearInterval(cursorInterval);
-    };
-  }, [index]);
-
-  return (
-    <div className="h-screen flex flex-col items-center justify-center bg-deep-blue text-white text-center px-4">
-      <motion.p
-        className="text-accent mb-4 font-mono typing-text"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        Hi, my name is
-      </motion.p>
-      <motion.h1
-        className="text-5xl font-bold mb-2 text-light-slate typing-text"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-      >
-        Manam Bhatt
-      </motion.h1>
-      <motion.p
-        className="text-xl md:text-2xl mb-4 text-slate typing-text"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-      >
-        Senior DevOps Engineer | Cloud & Automation Specialist
-      </motion.p>
-      <div className="h-8 mt-4 relative flex justify-center items-center overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            className="absolute text-lg text-slate-300 font-semibold"
-            variants={fadeUpVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            {text}<motion.span
-              className="cursor-blink"
-              animate={isCursorVisible ? 'visible' : 'hidden'}
-            >|</motion.span>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-      <motion.button
-        className="btn-primary mt-6"
-        whileHover={{ scale: 1.05 }}
-      >
-        Get in Touch
-      </motion.button>
-    </div>
-  );
-};
-
-export default Hero;
+@keyframes blink {
+  50% { opacity: 0; }
+}
