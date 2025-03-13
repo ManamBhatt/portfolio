@@ -45,7 +45,7 @@ const TypingEffect = () => {
 
   useEffect(() => {
     let charIndex = 0;
-    const typingSpeed = 100; // Adjust typing speed (milliseconds)
+    const typingSpeed = 100; // Slower typing speed
     const sentence = sentences[index];
 
     const typeText = () => {
@@ -69,7 +69,7 @@ const TypingEffect = () => {
   }, [index]);
 
   return (
-    <p className="text-xl md:text-2xl text-slate">
+    <p className="text-xl md:text-2xl text-slate text-center mt-4">
       I can <span className="typing-text">{displayText}</span>
       {showCursor && <span className="cursor-blink">|</span>}
     </p>
@@ -77,12 +77,19 @@ const TypingEffect = () => {
 };
 
 const Hero = () => {
+  const scrollToWork = () => {
+    const workSection = document.getElementById("work");
+    if (workSection) {
+      workSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="h-screen flex items-center justify-center bg-deep-blue relative overflow-hidden">
+    <div className="h-screen flex flex-col items-center justify-center bg-deep-blue relative overflow-hidden text-center">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-deep-blue to-deep-blue" />
       
       <motion.div 
-        className="text-center z-10"
+        className="z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -104,7 +111,7 @@ const Hero = () => {
           Manam Bhatt
         </motion.h1>
         <motion.p 
-          className="text-xl md:text-2xl mb-4 text-slate"
+          className="text-xl md:text-2xl text-slate mb-6"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.4 }}
@@ -112,6 +119,17 @@ const Hero = () => {
           Senior DevOps Engineer | Cloud & Automation Specialist
         </motion.p>
         <TypingEffect />
+        
+        {/* View My Work Button */}
+        <motion.button
+          className="mt-6 px-6 py-3 bg-transparent border border-accent text-accent rounded-lg hover:bg-accent/10 transition-all duration-300"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.6 }}
+          onClick={scrollToWork}
+        >
+          View My Work
+        </motion.button>
       </motion.div>
     </div>
   );
