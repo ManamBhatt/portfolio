@@ -34,6 +34,8 @@
 }
 
 @layer components {
+  /* Existing styles... */
+  
   .glass-card {
     @apply bg-navy/30 backdrop-blur-sm border border-accent/10 rounded-lg shadow-lg;
   }
@@ -52,5 +54,27 @@
 
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Typing Animation */
+  @keyframes typing {
+    0% {
+      width: 0;
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 0;
+    }
+  }
+
+  .typing-animation {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #64FFDA; /* Cursor effect */
+    width: 0;
+    animation: typing 4s steps(20) infinite;
   }
 }
