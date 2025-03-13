@@ -94,7 +94,7 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        {/* Permanent Typing Animation for Name & Title */}
+        {/* Static Typing Animation for Name & Title */}
         <p className="text-accent mb-2 font-mono text-lg">
           <TypingEffect text="Hi, my name is" speed={100} />
         </p>
