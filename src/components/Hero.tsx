@@ -36,7 +36,6 @@ const Hero = () => {
     "I provision and manage resources on Google Cloud Platform (GCP).",
     "I manage and deliver projects using Agile methodologies.",
     "I implement Scrum frameworks for efficient project management and delivery."
-    // ... (other descriptions remain the same)
   ];
 
   const [currentDescription, setCurrentDescription] = useState(0);
@@ -89,6 +88,16 @@ const Hero = () => {
     };
   }, [currentDescription]);
 
+  const handleWorkScroll = () => {
+    const workSection = document.getElementById('work');
+    if (workSection) {
+      workSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <div className="h-screen flex items-center justify-center bg-deep-blue relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/5 via-deep-blue to-deep-blue" />
@@ -116,7 +125,13 @@ const Hero = () => {
           <span className={`cursor-blink ${isCursorVisible ? 'visible' : 'invisible'}`}>|</span>
         </motion.p>
 
-        <motion.button className="btn-primary">
+        <motion.button 
+          className="btn-primary"
+          onClick={handleWorkScroll}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="View my work"
+        >
           View My Work
         </motion.button>
       </motion.div>
