@@ -27,7 +27,7 @@ const About = () => {
               }}
             />
             <img
-              src="portfolio/public/Untitled.jpg"
+              src="/Untitled.jpg"
               alt="Profile"
               className="relative rounded-lg w-full max-w-md mx-auto glass-card"
             />
