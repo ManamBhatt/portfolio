@@ -55,56 +55,37 @@
   }
 }
 
-/* Custom CSS for Hero Section */
-.hero {
-  font-family: 'Inter', sans-serif;
-}
-
-.hero p {
-  font-size: 20px;
-}
-
-.hero h1 {
-  font-size: 60px;
-  font-weight: bold;
-}
-
-.hero .btn-primary {
-  transition: all 0.3s ease-in-out;
-  padding: 15px 30px;
-  font-size: 18px;
-  margin-top: 20px;
-  background-color: transparent;
-  border: 2px solid #64FFDA;
-  color: #64FFDA;
-}
-
-.hero .btn-primary:hover {
-  background-color: #64FFDA;
-  color: #0A192F;
-}
-
-/* Typing Animation */
+/* Typing effect */
 @keyframes typing {
-  0% {
+  from {
     width: 0;
   }
-  100% {
+  to {
     width: 100%;
   }
 }
 
-.typing-effect {
-  display: inline-block;
-  width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #64FFDA;
-  animation: typing 3s steps(30) 1s forwards, blink 0.7s step-end infinite;
-}
-
+/* Blinking cursor animation */
 @keyframes blink {
   50% {
     border-color: transparent;
   }
+}
+
+/* Typing animation applied to text */
+.typing-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #fff;
+  animation: typing 3s steps(30) forwards;
+}
+
+/* Blinking cursor effect */
+.cursor-blink {
+  display: inline-block;
+  width: 0;
+  height: 1.5rem; /* Adjust height to match line height */
+  border-right: 2px solid #fff;
+  animation: blink 0.75s infinite step-end;
 }
