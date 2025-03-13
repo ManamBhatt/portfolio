@@ -24,56 +24,40 @@ const Hero = () => {
   };
 
   const [currentText, setCurrentText] = useState("");
-  const [isCursorVisible, setIsCursorVisible] = useState(true);
+  const [textIndex, setTextIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
 
+  const lines = [
+    "Hi, my name is Manam Bhatt",
+    "Senior DevOps Engineer | Cloud & Automation Specialist"
+  ];
+
+  // Typing effect logic
   useEffect(() => {
     let typingTimeout: NodeJS.Timeout;
-    let deletingTimeout: NodeJS.Timeout;
-    let cursorBlinkTimeout: NodeJS.Timeout;
 
     const typeText = (text: string) => {
       let index = 0;
-      setIsCursorVisible(true);
+      setIsTyping(true);
       typingTimeout = setInterval(() => {
         setCurrentText((prev) => prev + text[index]);
         index += 1;
         if (index === text.length) {
           clearInterval(typingTimeout);
-          // Start deleting after typing is done
-          setTimeout(() => deleteText(), 2000); // Wait 2 seconds before starting delete
+          setTimeout(() => {
+            setTextIndex((prev) => (prev + 1) % lines.length); // Move to the next line after typing is done
+          }, 1000); // Wait 1 second before starting the next line
         }
-      }, 100); // Typing speed (100ms per letter)
+      }, 150); // Typing speed (150ms per letter)
     };
 
-    const deleteText = () => {
-      let index = currentText.length;
-      deletingTimeout = setInterval(() => {
-        setCurrentText((prev) => prev.slice(0, index - 1));
-        index -= 1;
-        if (index === 0) {
-          clearInterval(deletingTimeout);
-          // You can set the next text or stop here
-        }
-      }, 50); // Deleting speed (50ms per letter)
-    };
+    if (textIndex < lines.length) {
+      setCurrentText(""); // Reset text for each line
+      typeText(lines[textIndex]);
+    }
 
-    typeText("I manage code versioning and collaboration using Git.");
-
-    const blinkCursor = () => {
-      cursorBlinkTimeout = setInterval(() => {
-        setIsCursorVisible((prev) => !prev);
-      }, 500); // Cursor blinks every 500ms
-    };
-
-    blinkCursor();
-
-    // Clean up intervals and timeouts when component unmounts
-    return () => {
-      clearInterval(typingTimeout);
-      clearInterval(deletingTimeout);
-      clearInterval(cursorBlinkTimeout);
-    };
-  }, [currentText]);
+    return () => clearInterval(typingTimeout); // Clean up timeout on component unmount
+  }, [textIndex]);
 
   return (
     <div className="h-screen flex items-center justify-center bg-deep-blue relative overflow-hidden">
@@ -85,42 +69,19 @@ const Hero = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* Line 1: Hi, my name is */}
+        {/* Typing effect for Hi, my name is Manam Bhatt */}
         <motion.p 
           className="text-accent mb-4 font-mono"
           variants={itemVariants}
         >
-          Hi, my name is
+          {currentText}
         </motion.p>
 
-        {/* Line 2: Manam Bhatt */}
-        <motion.h1 
-          className="text-5xl md:text-7xl font-bold mb-4 text-light-slate"
-          variants={itemVariants}
-        >
-          Manam Bhatt
-        </motion.h1>
-
-        {/* Line 3: Senior DevOps Engineer | Cloud & Automation Specialist */}
-        <motion.p 
-          className="text-xl md:text-2xl mb-4 text-slate"
-          variants={itemVariants}
-        >
-          Senior DevOps Engineer | Cloud & Automation Specialist
-        </motion.p>
-
-        {/* Typing effect */}
-        <motion.p 
-          className="text-xl md:text-2xl mb-8 text-slate flex items-center justify-center"
-          variants={itemVariants}
-        >
-          <span className="animate-typing">{currentText}</span>
-          <span className={`cursor-blink ${isCursorVisible ? 'visible' : 'invisible'}`}>|</span>
-        </motion.p>
-
+        {/* View My Work Button */}
         <motion.button 
           className="btn-primary"
           variants={itemVariants}
+          onClick={() => window.location.href = '/work'} // This will redirect the user to the "/work" page (update this URL as needed)
         >
           View My Work
         </motion.button>
@@ -130,4 +91,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
